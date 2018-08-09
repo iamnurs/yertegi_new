@@ -6,12 +6,13 @@ import {
   Dimensions,
   Text,
   TouchableOpacity,
-  Linking
+  Linking,
+  Platform
 } from "react-native";
 import { createStackNavigator, createDrawerNavigator } from "react-navigation";
 import { Icon, SearchBar } from "react-native-elements";
 import Rate, { AndroidMarket } from "react-native-rate";
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from "react-native-splash-screen";
 
 import MainPage from "./components/MainPage";
 import TaleScreen from "./components/TaleScreen";
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   title: {
-    fontFamily: "serif",
+    fontFamily: Platform.OS === "ios" ? "PT Serif" : "serif",
     fontStyle: "italic",
     textAlign: "center",
     flex: 1,
@@ -151,8 +152,8 @@ class Home extends Component {
 
   componentDidMount() {
     // do stuff while splash screen is shown
-      // After having done stuff (such as async tasks) hide the splash screen
-      SplashScreen.hide();
+    // After having done stuff (such as async tasks) hide the splash screen
+    SplashScreen.hide();
   }
 
   render() {

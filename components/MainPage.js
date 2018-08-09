@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Text,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import { BoxShadow } from "react-native-shadow";
 import { Icon } from "react-native-elements";
@@ -118,9 +119,11 @@ export default class MainPage extends Component {
             renderItem={this._renderItem}
             initialNumToRender={10}
             numColumns={2}
-            getItemLayout={(data, index) => (
-              {length: 180, offset: 180 * index, index}
-            )}
+            getItemLayout={(data, index) => ({
+              length: 180,
+              offset: 180 * index,
+              index
+            })}
           />
         )}
       </View>
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: "#fff",
     textAlign: "center",
-    fontFamily: "serif",
+    fontFamily: Platform.OS === "ios" ? "PT Serif" : "serif",
     fontStyle: "italic"
   },
   overlay: {

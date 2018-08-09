@@ -6,7 +6,8 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import Modal from "react-native-modal";
 import { Icon, Slider } from "react-native-elements";
@@ -76,7 +77,7 @@ export default class TaleScreen extends Component {
     return {
       title: navigation.getParam("title"),
       headerTitleStyle: {
-        fontFamily: "serif",
+        fontFamily: Platform.OS === 'ios' ? "PT Serif":"serif",
         fontStyle: "italic"
       },
       headerRight: (
@@ -97,7 +98,7 @@ export default class TaleScreen extends Component {
   state = {
     fontLoaded: false,
     fontSize: 15,
-    fontFamily: "serif",
+    fontFamily: Platform.OS === 'ios' ? "PT Serif":"serif",
     backColor: "#fff",
     textColor: "#000",
     settings: false
@@ -190,7 +191,7 @@ export default class TaleScreen extends Component {
                     color: this.state.fontFamily === "serif" ? "tomato" : "grey"
                   }
                 ]}
-                onPress={() => this.setState({ fontFamily: "serif" })}
+                onPress={() => this.setState({ fontFamily: Platform.OS === 'ios' ? "PT Serif":"serif" })}
               >
                 Serif
               </Text>

@@ -4,10 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   ActivityIndicator,
   Dimensions,
-  NetInfo
+  Platform
 } from "react-native";
 import Modal from "react-native-modal";
 import { Icon, Slider } from "react-native-elements";
@@ -18,7 +17,7 @@ export default class PlayerScreen extends Component {
     return {
       title: navigation.getParam("title"),
       headerTitleStyle: {
-        fontFamily: "serif",
+        fontFamily: Platform.OS === "ios" ? "PT Serif" : "serif",
         fontStyle: "italic"
       }
     };
@@ -219,7 +218,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   title: {
-    fontFamily: "serif",
+    fontFamily: Platform.OS === "ios" ? "PT Serif" : "serif",
     fontSize: 20,
     textAlign: "center",
     alignSelf: "center"
