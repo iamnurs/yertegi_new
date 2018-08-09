@@ -177,10 +177,10 @@ export default class TaleScreen extends Component {
                 style={[
                   styles.fontSelect,
                   {
-                    color: this.state.fontFamily === "roman" ? "tomato" : "grey"
+                    color: (this.state.fontFamily === "roman" || this.state.fontFamily === "Times New Roman") ? "tomato" : "grey"
                   }
                 ]}
-                onPress={() => this.setState({ fontFamily: "roman" })}
+                onPress={() => this.setState({ fontFamily: Platform.OS === 'ios' ? "Times New Roman":"roman" })}
               >
                 TN Roman
               </Text>
@@ -188,7 +188,7 @@ export default class TaleScreen extends Component {
                 style={[
                   styles.fontSelect,
                   {
-                    color: this.state.fontFamily === "serif" ? "tomato" : "grey"
+                    color: (this.state.fontFamily === "serif" || this.state.fontFamily === "PT serif") ? "tomato" : "grey"
                   }
                 ]}
                 onPress={() => this.setState({ fontFamily: Platform.OS === 'ios' ? "PT Serif":"serif" })}
