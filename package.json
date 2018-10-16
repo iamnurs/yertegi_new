@@ -1,42 +1,80 @@
 {
   "name": "yertegi",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
-  "devDependencies": {
-    "babel-preset-react-native-stage-0": "^1.0.1",
-    "jest": "^23.4.2",
-    "jest-react-native": "^18.0.0",
-    "react-test-renderer": "16.3.1"
-  },
   "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "test": "jest"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build": "tsc -w",
+    "test": "jest",
+    "lint": "tslint 'src/**/*.ts?(x)' --format stylish",
+    "type-sync": "typesync",
+    "postinstall": "typesync",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "precommit": "tsc -p . && lint-staged",
+    "check-env": "solidarity",
+    "save-env": "solidarity snapshot",
+    "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
   },
-  "jest": {
-    "preset": "react-native"
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "tslint 'src/**/*.ts?(x)' --format stylish",
+      "git add"
+    ]
   },
   "dependencies": {
-    "exp": "^55.0.5",
-    "lodash": "^4.17.10",
+    "mobx": "^4.4.0",
+    "mobx-persist": "^0.4.1",
+    "mobx-react": "^5.1.2",
     "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "react-native": "^0.55.4",
     "react-native-elements": "^0.19.1",
     "react-native-modal": "^6.5.0",
-    "react-native-paper": "^1.11.0",
     "react-native-rate": "^1.1.2",
-    "react-native-shadow": "^1.2.2",
-    "react-native-slider": "^0.11.0",
-    "react-native-splash-screen": "^3.1.1",
-    "react-native-svg": "^6.5.2",
-    "react-native-vector-icons": "^5.0.0",
-    "react-native-video": "^3.1.0",
+    "react-native-vector-icons": "4.5.0",
+    "react-native-video": "^3.2.1",
     "react-navigation": "^2.8.0"
   },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts/"
+  "devDependencies": {
+    "@commitlint/cli": "^6.2.0",
+    "@commitlint/config-conventional": "^6.1.3",
+    "@types/jest": "^23.3.2",
+    "@types/prettier": "^1.13.2",
+    "@types/react": "^16.3.1",
+    "@types/react-addons-test-utils": "^0.14.22",
+    "@types/react-dom": "^16.0.7",
+    "@types/react-native": "^0.55.4",
+    "@types/react-native-vector-icons": "^4.6.3",
+    "@types/react-native-video": "^2.0.6",
+    "@types/react-navigation": "^2.0.20",
+    "babel-jest": "22.4.4",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.4",
+    "lint-staged": "^7.1.2",
+    "mobx-logger": "^0.7.0",
+    "npm-run-all": "^4.1.3",
+    "nyr": "^1.1.0",
+    "prettier": "^1.12.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.4.0",
+    "react-native-dotenv": "^0.1.1",
+    "react-native-typescript-transformer": "^1.2.6",
+    "solidarity": "^2.1.0",
+    "solidarity-react-native": "^2.0.2",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.8.3",
+    "typesync": "^0.4.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/node_modules/appcenter/test/AppCenterMock.js",
+      "<rootDir>/node_modules/appcenter-analytics/test/AppCenterAnalyticsMock.js",
+      "<rootDir>/node_modules/appcenter-crashes/test/AppCenterCrashesMock.js"
     ]
   }
 }

@@ -101,8 +101,8 @@ android {
         applicationId "com.yertegi.yertegi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.1.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -148,10 +148,8 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-splash-screen')
     compile project(':react-native-video')
     compile project(':react-native-vector-icons')
-    compile project(':react-native-svg')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.facebook.react:react-native:+"  // From node_modules
