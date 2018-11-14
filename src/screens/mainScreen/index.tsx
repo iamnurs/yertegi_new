@@ -73,7 +73,7 @@ export default class MainPage extends Component<IProps> {
   public render() {
     const { talesStore } = this.props;
     return (
-      <View>
+      <View style={{flex: 1}}>
         <StatusBar backgroundColor="#00B1B5" barStyle="light-content" />
         <ImageBackground
           source={require("../../../assets/images/background.jpg")}
@@ -81,10 +81,16 @@ export default class MainPage extends Component<IProps> {
         >
           {talesStore.tales.length !== 0 && (
             <FlatList
+              style={styles.flatlist}
               data={talesStore.tales.slice()}
               keyExtractor={keyExtractor}
               renderItem={this.renderItem}
               numColumns={2}
+              getItemLayout={(data, index) => ({
+                length: 180,
+                offset: 180 * index,
+                index
+              })}
             />
           )}
         </ImageBackground>
@@ -194,8 +200,12 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   backImage: {
-    position: "absolute",
     width,
-    height
+    height,
+    flex: 1
+  },
+  flatlist: {
+    bottom: 0,
+    marginBottom: 20
   }
 });
