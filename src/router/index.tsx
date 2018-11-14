@@ -68,7 +68,6 @@ const DrawerContent = () => (
     </View>
     <View style={styles.drawerFooter}>
       <Text style={styles.name}>Нұрсұлтан Ахметжанов</Text>
-      <Text style={styles.org}>n17r.com</Text>
     </View>
   </View>
 );

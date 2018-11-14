@@ -11,6 +11,7 @@ import {
 import Modal from "react-native-modal";
 import { Icon, Slider } from "react-native-elements";
 import Video from "react-native-video";
+import {minutesAndSeconds} from "../../utils"
 
 export default class PlayerScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -72,19 +73,9 @@ export default class PlayerScreen extends Component {
     }
   };
 
-  pad = (n, width, z = 0) => {
-    n = n + "";
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-  };
-
-  minutesAndSeconds = position => [
-    this.pad(Math.floor(position / 60), 2),
-    this.pad(position % 60, 2)
-  ];
-
   render() {
-    const elapsed = this.minutesAndSeconds(this.state.currentPosition);
-    const remaining = this.minutesAndSeconds(this.state.totalLength);
+    const elapsed = minutesAndSeconds(this.state.currentPosition);
+    const remaining = minutesAndSeconds(this.state.totalLength);
     return (
       <View style={styles.container}>
         <Modal
@@ -102,6 +93,7 @@ export default class PlayerScreen extends Component {
         <View style={[styles.playbackContainer]}>
           <View>
             <Slider
+              onPress={this.handleProgressPress}
               style={styles.playbackSlider}
               minimumTrackTintColor="#00B1B5"
               onSlidingStart={() => this.setState({ paused: true })}

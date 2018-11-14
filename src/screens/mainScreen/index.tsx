@@ -74,7 +74,7 @@ export default class MainPage extends Component<IProps> {
     const { talesStore } = this.props;
     return (
       <View style={{flex: 1}}>
-        <StatusBar backgroundColor="#00B1B5" barStyle="light-content" />
+        <StatusBar backgroundColor="#008A8A" barStyle="light-content" />
         <ImageBackground
           source={require("../../../assets/images/background.jpg")}
           style={styles.backImage}

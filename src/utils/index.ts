@@ -1,4 +1,4 @@
-import { secondsToTime } from './converters';
+import { minutesAndSeconds } from './converters';
 import { keyExtractor } from './listUtils';
 
-export { secondsToTime, keyExtractor };
+export { minutesAndSeconds, keyExtractor };
